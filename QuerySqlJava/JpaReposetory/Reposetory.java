@@ -1,38 +1,38 @@
 // This is just some ex for demo
-// check all key word below
+// check all keyword below
 public interface EntityRepository extends Repository<Entity, Long> {
 
 	// multi find
-	List<Entity> findByEmailAddressAndLastname(String option1, String option2);
+	List<Entity> findByOption1AndOption2(String option1, String option2);
 	
 	// Multi sort
-    List<Entity> findByOrderByOption1AscOption2Des();
+    	List<Entity> findByOrderByOption1AscOption2Des();
 	
 	// search by option1 and option2
 	@Query(value = "SELECT c FROM Entity c WHERE c.option1 LIKE %:option1% AND c.option2 LIKE %:option2%")
-    Page<Entity> searchByCountryCodeAndCityCode(@Param("option1") String option1, @Param("option2") String option2);
+    	Page<Entity> searchByOption1AndOption2(@Param("option1") String option1, @Param("option2") String option2);
 	
 	// find all and pagination
 	// in service: Page<Entity> entityList = EntityRepository.findAll(PageRequest.of(page, maxItem, Sort.by("option1").and(Sort.by("option2").descending())));
 	// page: start form 0
 	// maxItem: maxItem you want
 	// add Sort
-    Page<Entity> findAll(Pageable of);
+    	Page<Entity> findAll(Pageable of);
 	
 	// search by option1 and option2 and pagination
 	@Query(value = "SELECT c FROM Entity c WHERE c.option1 LIKE %:option1% AND c.option2 LIKE %:option2%")
-    Page<Entity> findAllByCountryCodeAndCityCode(@Param("option1") String option1, @Param("option2") String option2, Pageable of);
+    	Page<Entity> findAllByOption1AndOtion2(@Param("option1") String option1, @Param("option2") String option2, Pageable of);
 
 	// count by option1 but id
-    @Query(value = "SELECT COUNT(c) FROM Entity c WHERE c.option1 = :cityCode AND c.id <> :id")
-    int countByOption1ExcepttId(@Param("option1") String option1, @Param("id") Integer integer);
+    	@Query(value = "SELECT COUNT(c) FROM Entity c WHERE c.option1 = :cityCode AND c.id <> :id")
+    	int countByOption1ExcepttId(@Param("option1") String option1, @Param("id") Integer integer);
 
 	//check exists by option1
-    boolean existsByCityCode(String option1);
+    	boolean existsByCityCode(String option1);
 	
 	// get get Max Id
-    @Query("SELECT COALESCE(MAX(c.id), 0) FROM MstMainCity c")
-    Integer getMaxId();
+    	@Query("SELECT COALESCE(MAX(c.id), 0) FROM MstMainCity c")
+    	Integer getMaxId();
 }
 
 And				findByLastnameAndFirstname					… where x.lastname = ?1 and x.firstname = ?2
