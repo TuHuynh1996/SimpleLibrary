@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    Upper case:<input type="text" class="upper-case">
+    Lower case:<input type="text" class="lower-case">
+    <button class="test"> Test</button>
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        // upper case text input
+        $(document).on("keyup", ".upper-case", function () {
+            $(this).val($(this).val().toUpperCase());
+        })
+        $(".upper-case").css("text-transform", "uppercase");
+
+        // lower case text input
+        $(document).on("keyup", ".lower-case", function () {
+            $(this).val($(this).val().toLowerCase());
+        })
+        $(".lower-case").css("text-transform", "lowercase");
+
+
+        $(".test").click(function () {
+            alert("Upper case:" + $(".upper-case").val() + "  Lower case: " + $(".lower-case").val());
+        });
+    });
+</script>
+
+</html>
