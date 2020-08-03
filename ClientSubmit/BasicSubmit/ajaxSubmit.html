@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+
+<body>
+	<form class="signin">
+		<input class="email" type="text" placeholder="Email!" />
+		<br />
+		<input class="id" type="text" placeholder="User Id!" />
+		<br />
+		<input class="passWord" type="password" placeholder="Password!" />
+		<br />
+		<input class="passWordClone" type="password" placeholder="Nhập lại password!" />
+		<br />
+		<button class="submit" type="submit">Sign in</button>
+		<br />
+	</form>
+</body>
+<script>
+ 
+	$(document).ready(function(){
+		$(".signin").submit(function(){
+			// validate here, return false if not valid
+			var signInForm = {
+				"email": $(".email").val(),
+				"id": $(".id").val(),
+				"passWord": $(".passWord").val(),
+				"passWordClone": $(".passWordClone").val()
+			}
+
+			// return savenv(NhanVienForm,bophanid1[0]);
+			return post(signInForm, "/signin",function(result){
+				// response is result or server can redirect to another file
+			})
+		})
+	});
+
+	function post(oj, url, func) {
+		$.ajax({
+			type: 'post',
+			contentType: 'application/json; charset=utf-8',
+			dataType: 'json',
+			url: url,
+			data: JSON.stringify(oj),
+			cache: false,
+			success: function (result) {
+				func(result);
+			},
+			error: function (jqXHR, textStatus, errorThrown) {
+				// console.log('request failed :' + errorThrown);
+				alert(jqXHR.status + ":" + textStatus + errorThrown);
+			}
+		})
+		return false;
+	}
+</script>
+
+</html>

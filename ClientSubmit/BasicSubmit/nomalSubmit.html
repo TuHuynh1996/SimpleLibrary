@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <form class="signin" th:action="@{/signin}" th:object="${signInForm}" method="POST">
+        <input th:field="*{email}" type="text" placeholder="Email!" />
+        <br />
+        <input th:field="*{id}" type="text" placeholder="User Id!" />
+        <br />
+        <input th:field="*{passWord}" type="password" placeholder="Password!" />
+        <br />
+        <input th:field="*{passWordClone}" type="password" placeholder="Nhập lại password!" />
+        <br />
+        <button class="submit" type="submit">Sign in</button>
+        <br />
+    </form>
+</body>
+
+</html>
