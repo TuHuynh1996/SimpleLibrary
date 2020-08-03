@@ -25,8 +25,9 @@ public class MainController {
 			return "signin";
 		}
 	}
-	
-	public class SignInForm {
+}
+
+public class SignInForm {
 
 	@NotBlank(message = "message")
     @Pattern(regexp = "^(([a-zA-Z0-9_\\.\\-\\+])+\\@(([a-zA-Z0-9\\-])+\\.)+([a-zA-Z0-9]{2,4})+)?$", message = "message")
@@ -72,5 +73,4 @@ public class MainController {
     public void setPassWordClone(String passWordClone) {
         this.passWordClone = passWordClone;
     }
-}
 }
