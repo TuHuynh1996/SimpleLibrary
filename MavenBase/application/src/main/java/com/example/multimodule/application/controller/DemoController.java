@@ -18,7 +18,7 @@ public class DemoController extends BaseController {
 
 //	/** The my service. */
 	@Autowired
-	private UsersService user;
+	private UsersService usersService;
 
 	/**
 	 * Home.
@@ -38,7 +38,7 @@ public class DemoController extends BaseController {
 	 */
 	@GetMapping("/test1")
 	public List<Users> test1() {
-		return user.getAllUser();
+		return usersService.getAllUser();
 	}
 
 }

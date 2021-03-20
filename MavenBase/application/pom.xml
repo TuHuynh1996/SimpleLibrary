@@ -8,9 +8,8 @@
 		<artifactId>parent-module</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	
-	
-	<groupId>com.example</groupId>
+
+
 	<artifactId>web-module-application</artifactId>
 	<name>multi-module-application</name>
 	<description>Demo project for Spring Boot</description>
@@ -33,7 +32,21 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.auth0</groupId>
+			<artifactId>java-jwt</artifactId>
+			<version>3.4.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.auth0</groupId>
+			<artifactId>java-jwt</artifactId>
+			<version>3.14.0</version>
 		</dependency>
 	</dependencies>
 

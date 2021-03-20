@@ -3,6 +3,8 @@ package com.example.library.entity;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -19,7 +21,14 @@ public class Users extends BaseEntity {
 
 	/** The id. */
 	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	
+	/** The name. */
+	private String name;
+	
+	/** The password. */
+	private String password;
 
 	/** The roles. */
 	@ManyToMany
@@ -44,6 +53,44 @@ public class Users extends BaseEntity {
 	 */
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	
+	
+
+	/**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * Sets the name.
+	 *
+	 * @param name the new name
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * Gets the password.
+	 *
+	 * @return the password
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	/**
+	 * Sets the password.
+	 *
+	 * @param password the new password
+	 */
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	/**

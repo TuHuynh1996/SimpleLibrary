@@ -18,6 +18,9 @@ public class Role extends BaseEntity {
 	/** The id. */
 	@Id
 	private Integer id;
+	
+	/** The name. */
+	private String name;
 
 	/** The users. */
 	@ManyToMany(mappedBy = "roles") // variable mapping of class Student
@@ -39,6 +42,24 @@ public class Role extends BaseEntity {
 	 */
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	
+	/**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * Sets the name.
+	 *
+	 * @param name the new name
+	 */
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**

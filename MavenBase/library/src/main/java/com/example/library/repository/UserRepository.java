@@ -10,5 +10,13 @@ import com.example.library.entity.Users;
  */
 @Repository
 public interface UserRepository extends JpaRepository<Users, Integer> {
+	
+	/**
+	 * Find by name.
+	 *
+	 * @param username the username
+	 * @return the users
+	 */
+	public Users findByName(String username);
 
 }
