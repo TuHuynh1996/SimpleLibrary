@@ -19,4 +19,12 @@ public interface UsersService {
 	 */
 	public List<Users> getAllUser();
 
+	/**
+	 * Adds the user.
+	 *
+	 * @param entity the entity
+	 * @return the list
+	 */
+	public void addUser(Users entity);
+
 }

@@ -1,5 +1,6 @@
 package com.example.multimodule.application.security;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -26,6 +27,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     
     /** The user repository. */
     private UserRepository userRepository;
+    
+	/** The secret key. */
+	@Value("${jwtproperties.secret}")
+	private String secretKey;
 
     /**
      * Instantiates a new security configuration.
@@ -57,11 +62,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 // add jwt filters (1. authentication, 2. authorization)
-                .addFilter(new JwtAuthenticationFilter(authenticationManager()))
-                .addFilter(new JwtAuthorizationFilter(authenticationManager(),  this.userRepository))
+                .addFilter(new JwtAuthenticationFilter(authenticationManager(), secretKey))
+                .addFilter(new JwtAuthorizationFilter(authenticationManager(),  this.userRepository, secretKey))
                 .authorizeRequests()
                 // configure access rules
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
+                .antMatchers(HttpMethod.GET, "/test").permitAll()
                 .antMatchers("/management/*").hasRole("MANAGER")
                 .antMatchers("/admin/*").hasRole("ADMIN")
                 .antMatchers("/user/*").hasRole("User")

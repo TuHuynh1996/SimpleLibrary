@@ -7,7 +7,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -28,7 +27,6 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 	private UserRepository userRepository;
 	
 	/** The secret key. */
-	@Value("${web.module.jwtproperties.secret}")
 	private String secretKey;
 
 	/**
@@ -37,9 +35,10 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 	 * @param authenticationManager the authentication manager
 	 * @param userRepository the user repository
 	 */
-	public JwtAuthorizationFilter(AuthenticationManager authenticationManager, UserRepository userRepository) {
+	public JwtAuthorizationFilter(AuthenticationManager authenticationManager, UserRepository userRepository, String secretKey) {
 		super(authenticationManager);
 		this.userRepository = userRepository;
+		this.secretKey = secretKey;
 	}
 
 	/* (non-Javadoc)

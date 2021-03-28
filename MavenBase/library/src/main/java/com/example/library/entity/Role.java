@@ -3,6 +3,7 @@ package com.example.library.entity;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
@@ -23,7 +24,7 @@ public class Role extends BaseEntity {
 	private String name;
 
 	/** The users. */
-	@ManyToMany(mappedBy = "roles") // variable mapping of class Student
+	@ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY) // variable mapping of class Student
 	private Set<Users> users;
 
 	/**

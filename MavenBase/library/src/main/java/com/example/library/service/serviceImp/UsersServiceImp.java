@@ -27,5 +27,14 @@ public class UsersServiceImp implements UsersService {
 	public List<Users> getAllUser() {
 		return userRepository.findAll();
 	}
+	
+
+	/* (non-Javadoc)
+	 * @see com.example.library.service.UsersService#addUser(com.example.library.entity.Users)
+	 */
+	@Override
+	public void addUser(Users entity) {
+		userRepository.save(entity);
+	}
 
 }
