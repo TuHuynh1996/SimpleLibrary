@@ -15,15 +15,21 @@ import com.example.library.controller.BaseController;
 import com.example.library.entity.Role;
 import com.example.library.entity.Users;
 import com.example.library.service.UsersService;
+import com.example.mail.MailService;
 
 /**
  * The Class DemoController.
  */
 @RestController
 public class DemoController extends BaseController {
-	/** The my service. */
+	
+	/** The users service. */
 	@Autowired
 	private UsersService usersService;
+	
+	/** The Mail service. */
+	@Autowired
+	private MailService mailService;
 
 	/** The password encoder. */
 	PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -39,11 +45,11 @@ public class DemoController extends BaseController {
 	}
 
 	/**
-	 * Home.
+	 * Test.
 	 *
 	 * @return the string
 	 */
-	@GetMapping("/test")
+	@GetMapping("/test/adduser")
 	public String test() {
 		Role role = new Role();
 		role.setId(1);
@@ -56,14 +62,24 @@ public class DemoController extends BaseController {
 		usersService.addUser(user);
 		return "test";
 	}
+	
+	/**
+	 * Mailtest.
+	 *
+	 * @return the string
+	 */
+	@GetMapping("/test/mail")
+	public String mailtest() {
+		return mailService.SendMail();
+	}
 
 	/**
-	 * Test 1.
+	 * Gets the all user.
 	 *
 	 * @return the string
 	 */
 	@GetMapping("/user")
-	public List<Users> test1() {
+	public List<Users> getAllUser() {
 		List<Users> users = usersService.getAllUser();
 		users.forEach((e) -> {
 			e.setRoles(null);

@@ -14,3 +14,6 @@ MavenBase/library/.classpath
 MavenBase/library/.project
 *.prefs
 MavenBase/library/target/*
+*.cmd
+MavenBase/mail/.mvn/wrapper/maven-wrapper.jar
+MavenBase/mail/.mvn/wrapper/maven-wrapper.properties

@@ -12,6 +12,7 @@
 	<modules>
 		<module>library</module>
 		<module>application</module>
+		<module>mail</module>
 	</modules>
 	<packaging>pom</packaging>
 
