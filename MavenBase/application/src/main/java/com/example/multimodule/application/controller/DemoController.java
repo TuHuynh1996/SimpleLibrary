@@ -15,6 +15,7 @@ import com.example.library.controller.BaseController;
 import com.example.library.entity.Role;
 import com.example.library.entity.Users;
 import com.example.library.service.UsersService;
+import com.example.mail.MailMessage;
 import com.example.mail.MailService;
 
 /**
@@ -22,11 +23,11 @@ import com.example.mail.MailService;
  */
 @RestController
 public class DemoController extends BaseController {
-	
+
 	/** The users service. */
 	@Autowired
 	private UsersService usersService;
-	
+
 	/** The Mail service. */
 	@Autowired
 	private MailService mailService;
@@ -62,7 +63,7 @@ public class DemoController extends BaseController {
 		usersService.addUser(user);
 		return "test";
 	}
-	
+
 	/**
 	 * Mailtest.
 	 *
@@ -70,7 +71,18 @@ public class DemoController extends BaseController {
 	 */
 	@GetMapping("/test/mail")
 	public String mailtest() {
-		return mailService.SendMail();
+		try {
+			MailMessage mailMessage = new MailMessage();
+			mailMessage.setFrom("tuhuynh962285164@gmail.com");
+			mailMessage.setTo("tuhuynh.work@outlook.com.vn");
+			mailMessage.setSubject("mail test");
+			mailMessage.setTemplate("templateMail");
+			mailService.SendMail(mailMessage);
+			return "Succesful";
+		} catch (Exception e) {
+			return e.getMessage();
+		}
+
 	}
 
 	/**
