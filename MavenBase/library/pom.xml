@@ -10,6 +10,6 @@
 	</parent>
 	<packaging>jar</packaging>
 	<artifactId>library</artifactId>
-	<name>multi-module-library</name>
+	<name>library</name>
 
 </project>

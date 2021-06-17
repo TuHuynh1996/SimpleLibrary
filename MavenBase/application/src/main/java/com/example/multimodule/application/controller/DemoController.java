@@ -1,15 +1,22 @@
 package com.example.multimodule.application.controller;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.library.controller.BaseController;
 import com.example.library.entity.Role;
@@ -97,6 +104,28 @@ public class DemoController extends BaseController {
 			e.setRoles(null);
 		});
 		return users;
+	}
+
+	@PostMapping("/test/uploadfile")
+	public String handleFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
+
+		try {
+			MultipartFile a = file;
+
+			System.out.println(a);
+
+			XSSFWorkbook workbook = new XSSFWorkbook(file.getInputStream());
+			XSSFSheet worksheet = workbook.getSheetAt(0);
+
+			for (int i = 1; i < worksheet.getPhysicalNumberOfRows(); i++) {
+
+			}
+
+			return a.toString();
+		} catch (IOException e) {
+			return e.getMessage();
+		}
+
 	}
 
 }
